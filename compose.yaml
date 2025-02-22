@@ -1,0 +1,23 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.14
+    container_name: mosquitto
+    # volumes:
+    #   - ./mosquitto/config:/mosquitto/config
+    #   - ./mosquitto/data:/mosquitto/data
+    #   - ./mosquitto/log:/mosquitto/log
+    volumes:
+      - ./config:/mosquitto/config
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+    stdin_open: true
+    tty: true
+    # restart: unless-stopped
+    # environment:
+    #   - TZ=Europe/Amsterdam
+    # command: >
+    #   sh -c "while ! nc -z db 3306; do sleep 1; done;
+    #          mosquitto -c /mosquitto/config/mosquitto.conf"
